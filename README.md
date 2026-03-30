@@ -1,23 +1,14 @@
 # 👹 RONAK HACKER PRO (V4.0)
 
 <p align="center">
-  <!-- Main Banner: Professional Cyber Security Animation -->
-  <img src="https://media.giphy.com/media/VHH06f0fNCA2A/giphy.gif" width="700" alt="Main Banner">
+  <img src="https://raw.githubusercontent.com/Anmol-Pradesh/Anmol-Pradesh/main/anime_banner_red.gif" width="700" alt="Anime Banner Red Light">
 </p>
 
+---
 <p align="center">
-  <!-- Side Element 1: Matrix Coding Rain -->
-  <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNHJidm8xdm10bmZqbmZqbmZqbmZqbmZqbmZqbmZqbmZqbmZqJmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1n/3o7TKSjP87B957v7t6/giphy.gif" width="300" style="display:inline-block;">
-  
-  <!-- Side Element 2: Anonymous Hacker Mask -->
-  <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbnZqbnZqbnZqbnZqbnZqbnZqbnZqbnZqbnZqbnZqbnZqJmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1n/fXpP8R2P8T2Zq/giphy.gif" width="300" style="display:inline-block;">
+  <img src="https://img.shields.io/github/languages/top/ronaksupport/Ronak-Telegram-Repoting-Tool-?style=for-the-badge&color=red">
+  <img src="https://img.shields.io/github/stars/ronaksupport/Ronak-Telegram-Repoting-Tool-?style=for-the-badge&color=cyan">
 </p>
-
-<p align="center">
-  <!-- Footer Banner: Red Cyber Attack Alert -->
-  <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbnZqbnZqbnZqbnZqbnZqbnZqbnZqbnZqbnZqbnZqbnZqJmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1n/3o7TKMGZ8Xm3J58Wfm/giphy.gif" width="700">
-</p>
-
 ---
 
 
