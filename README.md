@@ -27,7 +27,7 @@ pkg update && pkg upgrade -y && pkg install python git -y && git clone [https://
 
 
 
-🔥 New Features in v3.0
+## 🔥 New Features in v3.0
 ​🔋 Unified ID Mode: Channel, Group, aur Private ID sab par ek hi command se report.
 ​👹 Ronak Branding: Naya Hacker UI jo har page par "Ronak Report Tool" dikhata hai.
 ​♾️ Unlimited Intensity: User jitni chahe utni reports (100, 500, 1000+) hit kar sakta hai.
