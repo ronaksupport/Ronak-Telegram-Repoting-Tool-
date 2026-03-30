@@ -1,7 +1,7 @@
 # 👹 RONAK HACKER PRO (V4.0)
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Anmol-Pradesh/Anmol-Pradesh/main/anime_banner_red.gif" width="700" alt="Anime Banner Red Light">
+  <img src="https://raw.githubusercontent.com/Anmol-Pradesh/Anmol-Pradesh/main/Hacker.png" width="400" alt="Hacker Image">
 </p>
 
 ---
