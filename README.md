@@ -8,15 +8,6 @@
 <p align="center">
   <img src="https://img.shields.io/github/languages/top/ronaksupport/Ronak-Telegram-Repoting-Tool-?style=for-the-badge&color=red">
   <img src="https://img.shields.io/github/stars/ronaksupport/Ronak-Telegram-Repoting-Tool-?style=for-the-badge&color=cyan">
-</p>
----
-
-
-
----
-<p align="center">
-  <img src="https://img.shields.io/github/languages/top/ronaksupport/Ronak-Telegram-Repoting-Tool-?style=for-the-badge&color=red">
-  <img src="https://img.shields.io/github/stars/ronaksupport/Ronak-Telegram-Repoting-Tool-?style=for-the-badge&color=cyan">
   <img src="https://img.shields.io/github/forks/ronaksupport/Ronak-Telegram-Repoting-Tool-?style=for-the-badge&color=green">
 </p>
 ---
