@@ -9,8 +9,9 @@
 <p align="center">
   <img src="https://user-images.githubusercontent.com/74038190/212284100-561aa473-3905-4a80-b561-0d28506553ee.gif" width="400">
   <p align="center">
-  <img src="https://media.giphy.com/media/VHH06f0fNCA2A/giphy.gif" width="600">
+  <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNHJidm8xdm10bmZqbmZqbmZqbmZqbmZqbmZqbmZqbmZqbmZqJmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1n/3o7TKSjP87B957v7t6/giphy.gif" width="600">
 </p>
+
 
 </p>
 <p align="center">
