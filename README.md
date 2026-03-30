@@ -1,8 +1,16 @@
 # 👹 RONAK HACKER PRO (V4.0)
 
+
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Anmol-Pradesh/Anmol-Pradesh/main/Hacker.png" width="400" alt="Hacker Image">
+  <img src="https://raw.githubusercontent.com/Anmol-Pradesh/Anmol-Pradesh/main/anime_banner_red.gif" width="700" alt="Anime Banner Red Glow">
 </p>
+
+---
+<p align="center">
+  <img src="https://img.shields.io/github/languages/top/ronaksupport/Ronak-Telegram-Repoting-Tool-?style=for-the-badge&color=red">
+  <img src="https://img.shields.io/github/stars/ronaksupport/Ronak-Telegram-Repoting-Tool-?style=for-the-badge&color=cyan">
+</p>
+---
 
 ---
 <p align="center">
