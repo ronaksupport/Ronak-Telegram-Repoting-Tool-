@@ -13,15 +13,6 @@
 
 ---
 
-## 🚀 Fast Installation (Termux)
-
-Niche di gayi command ko copy karein aur Termux mein paste kar dein:
-
-```bash
-pkg update && pkg upgrade -y && pkg install python git -y && git clone [https://github.com/ronaksupport/Ronak-Telegram-Repoting-Tool-.git](https://github.com/ronaksupport/Ronak-Telegram-Repoting-Tool-.git) && cd Ronak-Telegram-Repoting-Tool- && pip install -r requirements.txt && python main.py
-
----
-
 ### 🔥 New Features in v3.0
 * 🔋 **Unified ID Mode**: Channel, Group, aur Private ID sab par ek hi command se report.
 * 👹 **Ronak Branding**: Naya Hacker UI jo har page par "Ronak Report Tool" dikhata hai.
@@ -46,3 +37,12 @@ pkg update && pkg upgrade -y && pkg install python git -y && git clone [https://
 </p>
 
 **⚡ Maintained by Ronak Support**
+
+---
+
+## 🚀 Fast Installation (Termux)
+
+Niche di gayi command ko copy karein aur Termux mein paste kar dein:
+
+```bash
+pkg update && pkg upgrade -y && pkg install python git -y && git clone [https://github.com/ronaksupport/Ronak-Telegram-Repoting-Tool-.git](https://github.com/ronaksupport/Ronak-Telegram-Repoting-Tool-.git) && cd Ronak-Telegram-Repoting-Tool- && pip install -r requirements.txt && python main.py
