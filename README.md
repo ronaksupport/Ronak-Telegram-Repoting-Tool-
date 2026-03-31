@@ -11,4 +11,4 @@
 Niche di gayi command ko copy karein aur Termux mein paste karein. Isme koi brackets nahi hain:
 
 ```bash
-pkg update && pkg upgrade -y && pkg install python git -y && rm -rf Ronak-Telegram-Repoting-Tool- && git clone [https://github.com/ronaksupport/Ronak-Telegram-Repoting-Tool-.git](https://github.com/ronaksupport/Ronak-Telegram-Repoting-Tool-.git) && cd Ronak-Telegram-Repoting-Tool- && pip install -r requirements.txt && python main.py
+pkg update && pkg upgrade -y && pkg install python git -y && git clone https://github.com/ronaksupport/Ronak-Telegram-Repoting-Tool-.git && cd Ronak-Telegram-Repoting-Tool- && pip install pyrogram tgcrypto && python main.py
