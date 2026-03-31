@@ -11,7 +11,7 @@ API_HASH = "8095b5465e94f107f9175402476d0590"
 # --- COLORS ---
 R, G, Y, C, W = '\033[1;31m', '\033[1;32m', '\033[1;33m', '\033[1;36m', '\033[0m'
 
-# --- REPORT TEXTS (All Types) ---
+# --- REPORT TEXTS ---
 REPORT_MESSAGES = [
     "This user is spreading spam and malicious links.",
     "Promoting violence and illegal activities.",
@@ -62,8 +62,7 @@ async def main():
             return
 
     banner()
-    print(f"{G}✅ System Access: {app.me.first_name} (@{app.me.username}){W}\n")
-    
+    print(f"{G}✅ System Access: {app.me.first_name}{W}\n")
     target = input(f"{G}┌─[Target Username or ID]\n└──╼ {W}").strip()
     
     print(f"\n{C}[ SELECT ATTACK VECTOR ]{W}")
@@ -76,7 +75,6 @@ async def main():
         "3": types.InputReportReasonChildAbuse(),
         "4": types.InputReportReasonOther()
     }
-    
     selected_reason = reasons.get(choice, reasons["1"])
     
     try:
@@ -88,11 +86,9 @@ async def main():
     
     try:
         peer = await app.resolve_peer(target)
-        
         for i in range(1, limit + 1):
             random_msg = random.choice(REPORT_MESSAGES)
             try:
-                # Raw reporting for bypass
                 await app.invoke(
                     raw.functions.account.ReportPeer(
                         peer=peer,
@@ -102,23 +98,24 @@ async def main():
                 )
                 sys.stdout.write(f"\r{G}[HIT-{i}] {C}Injecting Payload | {R}Status: Reported{W}")
                 sys.stdout.flush()
-                
-                # Speed control to avoid account ban
-                if i % 50 == 0:
-                    await asyncio.sleep(1)
-                else:
-                    await asyncio.sleep(0.2)
-                    
+                await asyncio.sleep(0.2)
             except errors.FloodWait as e:
-                print(f"\n{Y}[!] FloodWait: Sleeping {e.value}s{W}")
                 await asyncio.sleep(e.value)
-            except Exception:
+            except:
                 continue
 
-        # Final Success Message
         print(f"\n\n{G}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
         print(f"{G}✅ TASK COMPLETED SUCCESSFULLY!")
         print(f"{R}🚀 RONAK REPORT TOOL 🚀")
         print(f"{G}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━{W}")
-        input(f"\n{C}Press Enter to Exit...
+        input(f"\n{C}Press Enter to Exit...{W}") # Yeh line fix ho gayi hai
+
+    except Exception as e:
+        print(f"{R}❌ System Error: {str(e)}{W}")
+
+if __name__ == "__main__":
+    try:
+        asyncio.run(main())
+    except KeyboardInterrupt:
+        print(f"\n{R}[!] Ronak Hacker System Shutdown.{W}")
         
