@@ -1,37 +1,42 @@
 import asyncio
 import os
 import sys
+import random
 from pyrogram import Client, errors, raw, types
 
 # --- API CONFIG ---
-# Aap apni API_ID aur API_HASH bhi use kar sakte hain
-API_ID = 32567928
-API_HASH = "1ccc36ef5a82df3bba346bf9af66c143"
+API_ID = 26233441
+API_HASH = "8095b5465e94f107f9175402476d0590"
 
 # --- COLORS ---
-R = '\033[1;31m' 
-G = '\033[1;32m' 
-Y = '\033[1;33m' 
-C = '\033[1;36m' 
-W = '\033[0m'    
+R, G, Y, C, W = '\033[1;31m', '\033[1;32m', '\033[1;33m', '\033[1;36m', '\033[0m'
 
-def clear():
-    os.system('clear')
+# --- REPORT TEXTS (All Types) ---
+REPORT_MESSAGES = [
+    "This user is spreading spam and malicious links.",
+    "Promoting violence and illegal activities.",
+    "Child abuse content detected, take immediate action.",
+    "Harassment and abusive behavior towards others.",
+    "Inappropriate content and community guideline violation.",
+    "Scamming people and financial fraud.",
+    "Terrorism promotion and hate speech."
+]
 
 def banner():
-    clear()
-    print(f"{R}██████╗  ██████╗ ███╗   ██╗ █████╗ ██╗  ██╗")
-    print(f"{R}██╔══██╗██╔═══██╗████╗  ██║██╔══██╗██║ ██╔╝")
-    print(f"{W}██████╔╝██║   ██║██╔██╗ ██║███████║█████╔╝ ")
-    print(f"{W}██╔══██╗██║   ██║██║╚██╗██║██╔══██║██╔═██╗ ")
-    print(f"{R}██║  ██║╚██████╔╝██║ ╚████║██║  ██║██║  ██╗")
-    print(f"{G}       [ RONAK HACKER - OTP LOGIN SYSTEM ]{W}\n")
+    os.system('clear')
+    print(f"{C}┌─────────────────────────────────────────────────────────┐")
+    print(f"{C}│{R}  ██████╗  ██████╗ ███╗   ██╗ █████╗ ██╗  ██╗{C}            │")
+    print(f"{C}│{R}  ██╔══██╗██╔═══██╗████╗  ██║██╔══██╗██║ ██╔╝{C}            │")
+    print(f"{C}│{W}  ██████╔╝██║   ██║██╔██╗ ██║███████║█████╔╝ {C}            │")
+    print(f"{C}│{W}  ██╔══██╗██║   ██║██║╚██╗██║██╔══██║██╔═██╗ {C}            │")
+    print(f"{C}│{R}  ██║  ██║╚██████╔╝██║ ╚████║██║  ██║██║  ██╗{C}            │")
+    print(f"{C}└─────────────────────────────────────────────────────────┘")
+    print(f"{G}        [ GLOBAL SYSTEM: RONAK HACKER - V4.0 ]")
+    print(f"{Y}        [ ALL COUNTRIES SUPPORTED | OTP LOGIN ]{W}\n")
 
 async def main():
     banner()
-    # Session file locally save hogi
-    app = Client("ronak_session", api_id=API_ID, api_hash=API_HASH)
-    
+    app = Client("ronak_global_session", api_id=API_ID, api_hash=API_HASH)
     await app.connect()
     
     try:
@@ -40,64 +45,80 @@ async def main():
         me = None
 
     if not me:
-        print(f"{Y}[!] Login Required...{W}")
-        phone = input(f"{G}Enter Phone Number (with +91): {W}")
+        print(f"{Y}[!] Login Protocol Initiated...{W}")
+        phone = input(f"{G}┌─[Enter Phone Number (with + Country Code)]\n└──╼ {W}").strip()
         try:
             sent_code = await app.send_code(phone)
-            otp = input(f"{G}Enter OTP sent on Telegram: {W}")
+            print(f"\n{C}[*] OTP sent to {phone}. Check your Telegram app.{W}")
+            otp = input(f"{G}┌─[Enter Login OTP]\n└──╼ {W}").strip()
             try:
                 await app.sign_in(phone, sent_code.phone_code_hash, otp)
             except errors.SessionPasswordNeeded:
-                pwd = input(f"{G}2FA Password Required: {W}")
+                print(f"\n{R}[!] 2FA Encryption Detected!{W}")
+                pwd = input(f"{G}┌─[Enter 2FA Password]\n└──╼ {W}").strip()
                 await app.check_password(pwd)
         except Exception as e:
-            print(f"{R}Login Error: {e}{W}")
+            print(f"\n{R}❌ Login Error: {e}{W}")
             return
 
     banner()
-    print(f"{G}Login Successful as: {app.me.first_name}{W}\n")
+    print(f"{G}✅ System Access: {app.me.first_name} (@{app.me.username}){W}\n")
     
-    target = input(f"{C}Target Username/ID: {W}")
-    print(f"\n{Y}1. Spam  2. Violence  3. Child Abuse  4. Copyright  5. Other{W}")
-    choice = input(f"{G}Select Reason: {W}")
+    target = input(f"{G}┌─[Target Username or ID]\n└──╼ {W}").strip()
+    
+    print(f"\n{C}[ SELECT ATTACK VECTOR ]{W}")
+    print(f"{R}1. Mass Spam Hit   2. Violence   3. Child Abuse   4. Illegal{W}")
+    choice = input(f"\n{G}└──╼ {W}Select (1-4): ")
     
     reasons = {
         "1": types.InputReportReasonSpam(),
         "2": types.InputReportReasonViolence(),
         "3": types.InputReportReasonChildAbuse(),
-        "4": types.InputReportReasonCopyright(),
-        "5": types.InputReportReasonOther()
+        "4": types.InputReportReasonOther()
     }
     
-    reason = reasons.get(choice, types.InputReportReasonSpam())
-    msg_text = "Violation of Telegram terms. Please take action."
+    selected_reason = reasons.get(choice, reasons["1"])
+    
+    try:
+        limit = int(input(f"{G}┌─[Report Count (Max 1000)]\n└──╼ {W}Count: "))
+    except:
+        limit = 100
 
+    print(f"\n{R}[🔥] ATTACK STARTED BY RONAK HACKER...{W}\n")
+    
     try:
         peer = await app.resolve_peer(target)
-        count = int(input(f"{G}Report Count: {W}"))
         
-        print(f"\n{R}[!] Attack Started on {target}...{W}\n")
-        
-        for i in range(1, count + 1):
+        for i in range(1, limit + 1):
+            random_msg = random.choice(REPORT_MESSAGES)
             try:
+                # Raw reporting for bypass
                 await app.invoke(
                     raw.functions.account.ReportPeer(
                         peer=peer,
-                        reason=reason,
-                        message=msg_text
+                        reason=selected_reason,
+                        message=random_msg
                     )
                 )
-                print(f"{G}[SUCCESS] Report {i} Sent!{W}")
-                await asyncio.sleep(0.5) # Avoid flood
-            except errors.FloodWait as e:
-                print(f"{Y}FloodWait: Sleeping {e.value}s{W}")
-                await asyncio.sleep(e.value)
-            except Exception as e:
-                print(f"{R}Error: {e}{W}")
+                sys.stdout.write(f"\r{G}[HIT-{i}] {C}Injecting Payload | {R}Status: Reported{W}")
+                sys.stdout.flush()
                 
-    except Exception as e:
-        print(f"{R}Could not find target: {e}{W}")
+                # Speed control to avoid account ban
+                if i % 50 == 0:
+                    await asyncio.sleep(1)
+                else:
+                    await asyncio.sleep(0.2)
+                    
+            except errors.FloodWait as e:
+                print(f"\n{Y}[!] FloodWait: Sleeping {e.value}s{W}")
+                await asyncio.sleep(e.value)
+            except Exception:
+                continue
 
-if __name__ == "__main__":
-    asyncio.run(main())
-    
+        # Final Success Message
+        print(f"\n\n{G}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
+        print(f"{G}✅ TASK COMPLETED SUCCESSFULLY!")
+        print(f"{R}🚀 RONAK REPORT TOOL 🚀")
+        print(f"{G}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━{W}")
+        input(f"\n{C}Press Enter to Exit...
+        
